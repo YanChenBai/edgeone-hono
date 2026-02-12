@@ -37,35 +37,39 @@ functions/
 
 ### Static Routes
 
-| Path | Method | Description |
-|------|------|------|
-| `/` | GET | Static home page, serves `index.html` from public directory |
+| Path | Method | Description                                                 |
+| ---- | ------ | ----------------------------------------------------------- |
+| `/`  | GET    | Static home page, serves `index.html` from public directory |
 
 **Examples:**
+
 - `https://hono.edgeone.app/` - Static home page
 
 ### SSR Routes (`/ssr`)
 
-| Path | Method | Description |
-|------|------|------|
-| `/ssr/:name` | GET | Dynamic SSR page, displays personalized welcome message |
+| Path         | Method | Description                                             |
+| ------------ | ------ | ------------------------------------------------------- |
+| `/ssr/:name` | GET    | Dynamic SSR page, displays personalized welcome message |
 
 **Examples:**
+
 - `https://hono.edgeone.app/ssr/john` - Shows "Hello john!" page
 
 ### Book Management Routes (`/book`)
 
-| Path | Method | Description |
-|------|------|------|
-| `/book` | GET | Get all books list page |
-| `/book/:id` | GET | Get specific book details page |
-| `/book` | POST | Create new book (API endpoint) |
+| Path        | Method | Description                    |
+| ----------- | ------ | ------------------------------ |
+| `/book`     | GET    | Get all books list page        |
+| `/book/:id` | GET    | Get specific book details page |
+| `/book`     | POST   | Create new book (API endpoint) |
 
 **Examples:**
+
 - `https://hono.edgeone.app/book` - Book list
 - `https://hono.edgeone.app/book/1` - Details of the first book
 
 **Create Book API Request Example:**
+
 ```bash
 curl -X POST https://hono.edgeone.app/book \
   -H "Content-Type: application/json" \
@@ -76,15 +80,17 @@ curl -X POST https://hono.edgeone.app/book \
 ```
 
 **Supported Features:**
+
 - CORS cross-origin support
 
 ### File Upload Routes (`/upload`)
 
-| Path | Method | Description |
-|------|------|------|
-| `/upload` | POST | File upload endpoint |
+| Path      | Method | Description          |
+| --------- | ------ | -------------------- |
+| `/upload` | POST   | File upload endpoint |
 
 **Example:**
+
 ```bash
 curl -X POST https://hono.edgeone.app/upload \
   -F "file=@example.txt"
@@ -109,9 +115,11 @@ curl -X POST https://hono.edgeone.app/upload \
 **Request Format**: `multipart/form-data`
 
 **Request Parameters**:
+
 - `file` (required): File to upload
 
 **curl Request Examples**:
+
 ```bash
 # Upload text file
 curl -X POST https://hono.edgeone.app/upload \
@@ -127,6 +135,7 @@ curl -X POST https://hono.edgeone.app/upload \
 ```
 
 **Response Example**:
+
 ```json
 {
   "success": true,
@@ -136,6 +145,7 @@ curl -X POST https://hono.edgeone.app/upload \
 ```
 
 **Error Response**:
+
 ```json
 {
   "success": false,
@@ -150,6 +160,7 @@ curl -X POST https://hono.edgeone.app/upload \
 **Description**: Create new book record
 
 **Request Parameters**:
+
 ```json
 {
   "title": "Book Title",
@@ -158,10 +169,12 @@ curl -X POST https://hono.edgeone.app/upload \
 ```
 
 **Parameter Description**:
+
 - `title` (optional): Book title, defaults to "Untitled"
 - `author` (optional): Author name, defaults to "Unknown"
 
 **curl Request Examples**:
+
 ```bash
 # Create book with complete information
 curl -X POST https://hono.edgeone.app/book \
@@ -185,6 +198,7 @@ curl -X POST https://hono.edgeone.app/book \
 ```
 
 **Response Example**:
+
 ```json
 {
   "success": true,
@@ -201,6 +215,7 @@ curl -X POST https://hono.edgeone.app/book \
 #### 3. Get Book Information
 
 **curl Request Examples**:
+
 ```bash
 # Get all books list
 curl -X GET https://hono.edgeone.app/book
@@ -214,12 +229,12 @@ curl -X GET https://hono.edgeone.app/john
 
 ### Error Code Description
 
-| Error Code | HTTP Status Code | Description |
-|-----------|-------------|------|
-| `VALIDATION_ERROR` | 400 | Request parameter validation failed |
-| `FILE_UPLOAD_ERROR` | 400 | File upload failed |
-| `NOT_FOUND` | 404 | Resource not found |
-| `INTERNAL_ERROR` | 500 | Internal server error |
+| Error Code          | HTTP Status Code | Description                         |
+| ------------------- | ---------------- | ----------------------------------- |
+| `VALIDATION_ERROR`  | 400              | Request parameter validation failed |
+| `FILE_UPLOAD_ERROR` | 400              | File upload failed                  |
+| `NOT_FOUND`         | 404              | Resource not found                  |
+| `INTERNAL_ERROR`    | 500              | Internal server error               |
 
 ### Rate Limiting
 
@@ -229,6 +244,7 @@ curl -X GET https://hono.edgeone.app/john
 ### CORS Support
 
 All API endpoints support cross-origin access, response headers include:
+
 - `Access-Control-Allow-Origin: *`
 - `Access-Control-Allow-Methods: POST, GET, OPTIONS`
 - `Access-Control-Allow-Headers: Content-Type, Authorization`
@@ -244,7 +260,6 @@ npm install
 # Start development server
 edgeone pages dev
 ```
-
 
 ## 🌐 Environment Variables
 
@@ -286,6 +301,7 @@ app.use('*', ipRestriction(/* configuration */));
 ## 🎨 UI Design
 
 The project adopts modern UI design:
+
 - Responsive layout
 - System font stack
 - Card-style design

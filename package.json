@@ -1,18 +1,27 @@
 {
   "name": "edgeone-pages-hono-app",
   "scripts": {
-    "deploy": "rm -rf ./node_modules && edgeone pages deploy ./ -n edgeone-hono-app -t ",
-    "sync-docs": "node scripts/sync-docs.js",
-    "build": "npm run sync-docs"
+    "build": "echo ok",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
   },
   "dependencies": {
-    "highlight.js": "^11.11.1",
+    "@hono/standard-validator": "^0.2.2",
+    "@upstash/redis": "^1.36.2",
+    "arktype": "^2.1.29",
     "hono": "^4.7.10",
-    "marked": "^15.0.12",
-    "marked-highlight": "^2.2.1"
+    "hono-openapi": "^1.2.0"
   },
   "devDependencies": {
     "@edgeone/ef-types": "^1.0.5",
-    "edgeone": "^1.0.21"
+    "@types/node": "^25.2.3",
+    "lint-staged": "^16.2.7",
+    "oxfmt": "^0.32.0",
+    "oxlint": "^1.47.0"
+  },
+  "lint-staged": {
+    "*": "pnpm run lint:fix && pnpm run fmt"
   }
 }

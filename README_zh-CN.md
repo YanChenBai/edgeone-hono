@@ -37,35 +37,39 @@ functions/
 
 ### 静态路由
 
-| 路径 | 方法 | 描述 |
-|------|------|------|
-| `/` | GET | 静态首页，从 public 目录提供 `index.html` |
+| 路径 | 方法 | 描述                                      |
+| ---- | ---- | ----------------------------------------- |
+| `/`  | GET  | 静态首页，从 public 目录提供 `index.html` |
 
 **示例：**
+
 - `https://hono.edgeone.app/` - 静态首页
 
 ### SSR 路由 (`/ssr`)
 
-| 路径 | 方法 | 描述 |
-|------|------|------|
-| `/ssr/:name` | GET | 动态 SSR 页面，显示个性化欢迎消息 |
+| 路径         | 方法 | 描述                              |
+| ------------ | ---- | --------------------------------- |
+| `/ssr/:name` | GET  | 动态 SSR 页面，显示个性化欢迎消息 |
 
 **示例：**
+
 - `https://hono.edgeone.app/ssr/john` - 显示 "Hello john!" 页面
 
 ### 图书管理路由 (`/book`)
 
-| 路径 | 方法 | 描述 |
-|------|------|------|
-| `/book` | GET | 获取所有图书列表页面 |
-| `/book/:id` | GET | 获取特定图书详情页面 |
-| `/book` | POST | 创建新图书（API 端点） |
+| 路径        | 方法 | 描述                   |
+| ----------- | ---- | ---------------------- |
+| `/book`     | GET  | 获取所有图书列表页面   |
+| `/book/:id` | GET  | 获取特定图书详情页面   |
+| `/book`     | POST | 创建新图书（API 端点） |
 
 **示例：**
+
 - `https://hono.edgeone.app/book` - 图书列表
 - `https://hono.edgeone.app/book/1` - 第一本书的详情
 
 **创建图书 API 请求示例：**
+
 ```bash
 curl -X POST https://hono.edgeone.app/book \
   -H "Content-Type: application/json" \
@@ -76,15 +80,17 @@ curl -X POST https://hono.edgeone.app/book \
 ```
 
 **支持的功能：**
+
 - CORS 跨域支持
 
 ### 文件上传路由 (`/upload`)
 
-| 路径 | 方法 | 描述 |
-|------|------|------|
+| 路径      | 方法 | 描述         |
+| --------- | ---- | ------------ |
 | `/upload` | POST | 文件上传端点 |
 
 **示例：**
+
 ```bash
 curl -X POST https://hono.edgeone.app/upload \
   -F "file=@example.txt"
@@ -109,9 +115,11 @@ curl -X POST https://hono.edgeone.app/upload \
 **请求格式**: `multipart/form-data`
 
 **请求参数**:
+
 - `file` (必需): 要上传的文件
 
 **curl 请求示例**:
+
 ```bash
 # 上传文本文件
 curl -X POST https://hono.edgeone.app/upload \
@@ -127,6 +135,7 @@ curl -X POST https://hono.edgeone.app/upload \
 ```
 
 **响应示例**:
+
 ```json
 {
   "success": true,
@@ -136,6 +145,7 @@ curl -X POST https://hono.edgeone.app/upload \
 ```
 
 **错误响应**:
+
 ```json
 {
   "success": false,
@@ -150,6 +160,7 @@ curl -X POST https://hono.edgeone.app/upload \
 **描述**: 创建新的图书记录
 
 **请求参数**:
+
 ```json
 {
   "title": "图书标题",
@@ -158,10 +169,12 @@ curl -X POST https://hono.edgeone.app/upload \
 ```
 
 **参数说明**:
+
 - `title` (可选): 图书标题，默认为 "Untitled"
 - `author` (可选): 作者姓名，默认为 "Unknown"
 
 **curl 请求示例**:
+
 ```bash
 # 创建包含完整信息的图书
 curl -X POST https://hono.edgeone.app/book \
@@ -185,6 +198,7 @@ curl -X POST https://hono.edgeone.app/book \
 ```
 
 **响应示例**:
+
 ```json
 {
   "success": true,
@@ -201,6 +215,7 @@ curl -X POST https://hono.edgeone.app/book \
 #### 3. 获取图书信息
 
 **curl 请求示例**:
+
 ```bash
 # 获取所有图书列表
 curl -X GET https://hono.edgeone.app/book
@@ -214,12 +229,12 @@ curl -X GET https://hono.edgeone.app/john
 
 ### 错误码说明
 
-| 错误码 | HTTP 状态码 | 描述 |
-|-----------|-------------|------|
-| `VALIDATION_ERROR` | 400 | 请求参数验证失败 |
-| `FILE_UPLOAD_ERROR` | 400 | 文件上传失败 |
-| `NOT_FOUND` | 404 | 资源未找到 |
-| `INTERNAL_ERROR` | 500 | 内部服务器错误 |
+| 错误码              | HTTP 状态码 | 描述             |
+| ------------------- | ----------- | ---------------- |
+| `VALIDATION_ERROR`  | 400         | 请求参数验证失败 |
+| `FILE_UPLOAD_ERROR` | 400         | 文件上传失败     |
+| `NOT_FOUND`         | 404         | 资源未找到       |
+| `INTERNAL_ERROR`    | 500         | 内部服务器错误   |
 
 ### 频率限制
 
@@ -229,6 +244,7 @@ curl -X GET https://hono.edgeone.app/john
 ### CORS 支持
 
 所有 API 端点均支持跨域访问，响应头包含：
+
 - `Access-Control-Allow-Origin: *`
 - `Access-Control-Allow-Methods: POST, GET, OPTIONS`
 - `Access-Control-Allow-Headers: Content-Type, Authorization`
@@ -285,6 +301,7 @@ app.use('*', ipRestriction(/* 配置 */));
 ## 🎨 UI 设计
 
 项目采用现代化 UI 设计：
+
 - 响应式布局
 - 系统字体栈
 - 卡片式设计

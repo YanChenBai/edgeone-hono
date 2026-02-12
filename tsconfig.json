@@ -5,11 +5,10 @@
     "moduleResolution": "Bundler",
     "strict": true,
     "skipLibCheck": true,
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["ESNext"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "types": ["@edgeone/ef-types"]
+    "types": ["@edgeone/ef-types", "node"]
   },
+  "include": ["./functions/**/*"]
 }
