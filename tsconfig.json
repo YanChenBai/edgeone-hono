@@ -10,5 +10,5 @@
     "jsxImportSource": "hono/jsx",
     "types": ["@edgeone/ef-types", "node"]
   },
-  "include": ["./functions/**/*"]
+  "include": ["./functions/**/*", "./src/**/*"]
 }

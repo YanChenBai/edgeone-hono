@@ -2,7 +2,7 @@ import { Redis } from '@upstash/redis';
 import { type } from 'arktype';
 import { Hono } from 'hono';
 import { describeRoute, resolver, validator, } from 'hono-openapi'
-import { openapi } from './routers';
+import { openapi } from '../src/routers';
 
 const REDIS_URL = env.REDIS_URL;
 const REDIS_TOKEN = env.REDIS_TOKEN;
@@ -56,6 +56,13 @@ app.get('/',
       ok: true,
       data: allSignaling ?? {},
     });
+  })
+  .get('/5dm-timeline', async (c) => {
+
+    const resp = await fetch('https://www.5dm.link/timeline')
+    const text = await resp.text()
+
+    return c.html(text)
   });
 
 

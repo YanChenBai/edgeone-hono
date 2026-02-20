@@ -4,7 +4,7 @@ import { openAPIRouteHandler } from 'hono-openapi';
 const app = new Hono();
 
 app.get(
-    '/openapi',
+    '/',
     openAPIRouteHandler(app, {
         documentation: {
             info: {
