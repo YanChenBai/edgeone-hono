@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 
 const app = new Hono().basePath('/')
-  .get('/5dm-timeline', async (c) => {
+  .get('/', async (c) => {
 
     const resp = await fetch('https://www.5dm.link/timeline')
     const text = await resp.text()
